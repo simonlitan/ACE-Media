@@ -336,9 +336,10 @@ codeunit 52178889 Staffportal
         end;
 
     end;
+
     procedure GetCustomers() Message: Text
-    var 
-    customerlist: Record "Customer";
+    var
+        customerlist: Record "Customer";
     begin
         customerlist.Reset();
         if customerlist.Find('-') then begin
@@ -1196,7 +1197,7 @@ codeunit 52178889 Staffportal
     end;
 
     //procedure CreateImprestRequisitionHeader(username: Text; directorate: Text; department: Text; resCenter: Text; purpose: Text) Message: Text;
-    procedure CreateImprestRequisitionHeader(username: Text; department: Text; resCenter: Text; purpose: Text ) Message: Text;
+    procedure CreateImprestRequisitionHeader(username: Text; department: Text; resCenter: Text; purpose: Text) Message: Text;
     var
         NextImprestNo: Text;
         fullName: Text;
@@ -1225,7 +1226,7 @@ codeunit 52178889 Staffportal
         if customerlist.Find('-') then begin
             ImprestHeader."Account No." := customerlist."No.";
             ImprestHeader.Payee := customerlist.Name;
-        end ;
+        end;
 
         EmployeeCard.Reset();
         EmployeeCard.SetRange(EmployeeCard."No.", username);
@@ -1383,7 +1384,7 @@ codeunit 52178889 Staffportal
         MemoHeader.Reset();
         MemoHeader.SetRange(MemoHeader."No.", memoNo);
         if MemoHeader.Find('-') then begin
-          //  Report.SaveAsPdf(Report::"FIN-Memo Report", filename, MemoHeader);
+            //  Report.SaveAsPdf(Report::"FIN-Memo Report", filename, MemoHeader);
         end
     end;
 
