@@ -1,0 +1,53 @@
+{
+  "id": "15cd11c9-959b-4463-8171-928e10792d7b",
+  "name": "Common",
+  "publisher": "Appkings",
+  "version": "2.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "0df3137b-7ab1-4ba5-abd6-2dc5898f131e",
+      "name": "Base Ext",
+      "publisher": "Appkings",
+      "version": "2.0.0.0"
+    },
+    {
+      "id": "b81538f8-8ab8-4c54-b747-1d1b3033fd21",
+      "name": "Hr",
+      "publisher": "Appkings",
+      "version": "2.0.0.0"
+    },
+    {
+      "id": "1c37d534-fd0e-4641-984c-3e44254681c1",
+      "name": "Finance",
+      "publisher": "Appkings",
+      "version": "2.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "2.0.0.0",
+  "application": "22.0.0.0",
+  "idRanges": [
+    {
+      "from": 52178876,
+      "to": 52179099
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "9.0",
+  "features": [
+    "NoImplicitWith"
+    
+  ],
+  "target": "OnPrem"
+}
