@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="Please update this value">
+    <body>
+      <group id="body">
+        <trans-unit id="Report 560573145 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Period: %1</source>
+          <target>Period: %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Before</source>
+          <target>Before</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Salary Distribution</source>
+          <target>Salary Distribution</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>More than</source>
+          <target>More than</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text003</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 732759939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged by %1</source>
+          <target>Aged by %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text004</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 1370456556" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total for %1</source>
+          <target>Total for %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text005</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 2008153173" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged as of %1</source>
+          <target>Aged as of %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text006</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 2645849790" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged by %1</source>
+          <target>Aged by %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text007</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 3283546407" size-unit="char" translate="yes" xml:space="preserve">
+          <source>All Amounts in LCY</source>
+          <target>All Amounts in LCY</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text008</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 3921243024" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date,Posting Date,Document Date</source>
+          <target>Due Date,Posting Date,Document Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text009</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 1664139952" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Date Formula %1 cannot be used. Try to restate it. E.g. 1M+CM instead of CM+1M.</source>
+          <target>The Date Formula %1 cannot be used. Try to restate it. E.g. 1M+CM instead of CM+1M.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text010</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 1026443335" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Data</source>
+          <target>Data</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text011</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 2939533186" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged Accounts Receivable</source>
+          <target>Aged Accounts Receivable</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text012</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 2301836569" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Company Name</source>
+          <target>Company Name</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text013</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 4214926420" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Report No.</source>
+          <target>Report No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text014</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 3577229803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Report Name</source>
+          <target>Report Name</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text015</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 1195352358" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
+          <target>User ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text016</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 557655741" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target>Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text017</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 857534312" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Filters</source>
+          <target>Customer Filters</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text018</note>
+        </trans-unit>
+        <trans-unit id="Report 560573145 - NamedType 219837695" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cust. Ledger Entry Filters</source>
+          <target>Cust. Ledger Entry Filters</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTaxcasual - NamedType Text019</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Statement</source>
+          <target>Statement</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <target>Options</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 474480784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Start Date</source>
+          <target>Start Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control Start Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 2649176925 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>End Date</source>
+          <target>End Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control End Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 120518645 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Overdue Entries</source>
+          <target>Show Overdue Entries</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control ShowOverdueEntries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 3349558288 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include</source>
+          <target>Include</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control Include - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 2059574099 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include All Customers with Ledger Entries</source>
+          <target>Include All Customers with Ledger Entries</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control IncludeAllCustomerswithLE - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 686806962 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include All Customers with a Balance</source>
+          <target>Include All Customers with a Balance</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control IncludeAllCustomerswithBalance - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 3414096222 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include Reversed Entries</source>
+          <target>Include Reversed Entries</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control IncludeReversedEntries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 2809948940 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include Unapplied Entries</source>
+          <target>Include Unapplied Entries</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control IncludeUnappliedEntries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 3843728681 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aging Band</source>
+          <target>Aging Band</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control Aging Band - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 4178264437 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Include Aging Band</source>
+          <target>Include Aging Band</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control IncludeAgingBand - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 4278445754 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aging Band Period Length</source>
+          <target>Aging Band Period Length</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control AgingBandPeriodLengt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 1031320896 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aging Band by</source>
+          <target>Aging Band by</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control AgingBandby - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 1031320896 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date,Posting Date</source>
+          <target>Due Date,Posting Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control AgingBandby - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - Control 816368762 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Log Interaction</source>
+          <target>Log Interaction</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - Control LogInteraction - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entries %1</source>
+          <target>Entries %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Overdue Entries %1</source>
+          <target>Overdue Entries %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Statement </source>
+          <target>Statement </target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text003</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 1370456556" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Multicurrency Application</source>
+          <target>Multicurrency Application</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text005</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2008153173" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Discount</source>
+          <target>Payment Discount</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text006</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2645849790" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rounding</source>
+          <target>Rounding</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text007</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3283546407" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You must specify the Aging Band Period Length.</source>
+          <target>You must specify the Aging Band Period Length.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text008</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 1664139952" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You must specify Aging Band Ending Date.</source>
+          <target>You must specify Aging Band Ending Date.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text010</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 1026443335" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged Summary by %1 (%2 by %3)</source>
+          <target>Aged Summary by %1 (%2 by %3)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text011</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2939533186" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Period Length is out of range.</source>
+          <target>Period Length is out of range.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text012</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2301836569" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date,Posting Date</source>
+          <target>Due Date,Posting Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text013</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 4214926420" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Application Writeoffs</source>
+          <target>Application Writeoffs</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text014</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2424052996" size-unit="char" translate="yes" xml:space="preserve">
+          <source>-%1</source>
+          <target>-%1</target>
+          <note from="Developer" annotates="general" priority="2">, Comment='Negating the period length: %1 is the period length'</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Text036</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 698237251" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Statement</source>
+          <target>Statement</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType StatementCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2512069321" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone No.</source>
+          <target>Phone No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType PhoneNo_CompanyInfoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 276525116" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Registration No.</source>
+          <target>VAT Registration No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType VATRegNo_CompanyInfoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3655449964" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Giro No.</source>
+          <target>Giro No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType GiroNo_CompanyInfoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3144910853" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank</source>
+          <target>Bank</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType BankName_CompanyInfoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 1931799952" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account No.</source>
+          <target>Account No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType BankAccNo_CompanyInfoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3162110670" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer No.</source>
+          <target>Customer No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType No1_CustCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2209068532" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Starting Date</source>
+          <target>Starting Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType StartDateCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3982372241" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ending Date</source>
+          <target>Ending Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType EndDateCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3303928736" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Statement No.</source>
+          <target>Statement No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType LastStatmntNo_CustCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3401669194" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <target>Posting Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType PostDate_DtldCustLedgEntriesCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 58467362" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date</source>
+          <target>Due Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType DueDate_CustLedgEntry2CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3136279037" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Balance</source>
+          <target>Balance</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType CustBalanceCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 106401415" size-unit="char" translate="yes" xml:space="preserve">
+          <source>..before</source>
+          <target>..before</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType beforeCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2869507195" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Home Page</source>
+          <target>Home Page</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType CompanyInfoHomepageCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 2377105323" size-unit="char" translate="yes" xml:space="preserve">
+          <source>E-Mail</source>
+          <target>E-Mail</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType CompanyInfoEmailCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3112881028" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Date</source>
+          <target>Document Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType DocDateCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3102655787" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <target>Total</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType Total_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 1460927981" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Start Date must have a value.</source>
+          <target>Start Date must have a value.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType BlankStartDateErr</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 159342192" size-unit="char" translate="yes" xml:space="preserve">
+          <source>End Date must have a value.</source>
+          <target>End Date must have a value.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType BlankEndDateErr</note>
+        </trans-unit>
+        <trans-unit id="Report 1002125975 - NamedType 3956382959" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Start date must be earlier than End date.</source>
+          <target>Start date must be earlier than End date.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Statement - NamedType StartDateLaterTheEndDateErr</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Period: %1</source>
+          <target>Period: %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Before</source>
+          <target>Before</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Salary Distribution</source>
+          <target>Salary Distribution</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>More than</source>
+          <target>More than</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text003</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 732759939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged by %1</source>
+          <target>Aged by %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text004</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 1370456556" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total for %1</source>
+          <target>Total for %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text005</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 2008153173" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged as of %1</source>
+          <target>Aged as of %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text006</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 2645849790" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged by %1</source>
+          <target>Aged by %1</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text007</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 3283546407" size-unit="char" translate="yes" xml:space="preserve">
+          <source>All Amounts in LCY</source>
+          <target>All Amounts in LCY</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text008</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 3921243024" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date,Posting Date,Document Date</source>
+          <target>Due Date,Posting Date,Document Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text009</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 1664139952" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Date Formula %1 cannot be used. Try to restate it. E.g. 1M+CM instead of CM+1M.</source>
+          <target>The Date Formula %1 cannot be used. Try to restate it. E.g. 1M+CM instead of CM+1M.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text010</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 1026443335" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Data</source>
+          <target>Data</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text011</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 2939533186" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Aged Accounts Receivable</source>
+          <target>Aged Accounts Receivable</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text012</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 2301836569" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Company Name</source>
+          <target>Company Name</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text013</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 4214926420" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Report No.</source>
+          <target>Report No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text014</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 3577229803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Report Name</source>
+          <target>Report Name</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text015</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 1195352358" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
+          <target>User ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text016</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 557655741" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target>Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text017</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 857534312" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Filters</source>
+          <target>Customer Filters</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text018</note>
+        </trans-unit>
+        <trans-unit id="Report 2606497378 - NamedType 219837695" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cust. Ledger Entry Filters</source>
+          <target>Cust. Ledger Entry Filters</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report priTax - NamedType Text019</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

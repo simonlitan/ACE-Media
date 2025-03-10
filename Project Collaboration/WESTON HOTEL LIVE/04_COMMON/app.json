@@ -1,0 +1,53 @@
+{
+  "id": "868aa617-5329-44d2-93c5-0165cd685650",
+  "name": "COMMON SERVICES",
+  "publisher": "Default publisher",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "af21cfc4-ef28-4adf-a53b-1f59bcdcd081",
+      "name": "FINANCE AND PROCUREMENT",
+      "publisher": "Default publisher",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "7edf8575-e63f-42c1-840b-92187145276e",
+      "name": "BASE APPLICATIONS",
+      "publisher": "Default publisher",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "3bd6f8d6-b25d-447f-b6d2-dc1f30aac0d8",
+  "name": "HR MANAGER",
+  "publisher": "Default publisher",
+  "version": "1.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "20.0.0.0",
+  "idRanges": [
+    {
+     
+      "from": 52178861,
+      "to": 52180000
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "9.0",
+  "target": "OnPrem",
+  "features": [
+    "NoImplicitWith"
+  ]
+}

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="CompPic">
+          <DataField>CompPic</DataField>
+        </Field>
+        <Field Name="companyName">
+          <DataField>companyName</DataField>
+        </Field>
+        <Field Name="companyAddress">
+          <DataField>companyAddress</DataField>
+        </Field>
+        <Field Name="Organization">
+          <DataField>Organization</DataField>
+        </Field>
+        <Field Name="Car_No">
+          <DataField>Car_No</DataField>
+        </Field>
+        <Field Name="AUDIT_DATE">
+          <DataField>AUDIT_DATE</DataField>
+        </Field>
+        <Field Name="AUDIT_NO">
+          <DataField>AUDIT_NO</DataField>
+        </Field>
+        <Field Name="Area_under_review">
+          <DataField>Area_under_review</DataField>
+        </Field>
+        <Field Name="ISO_9001_CLAUSE">
+          <DataField>ISO_9001_CLAUSE</DataField>
+        </Field>
+        <Field Name="Requirement">
+          <DataField>Requirement</DataField>
+        </Field>
+        <Field Name="Non_conformity_evidence">
+          <DataField>Non_conformity_evidence</DataField>
+        </Field>
+        <Field Name="Auditor">
+          <DataField>Auditor</DataField>
+        </Field>
+        <Field Name="Auditee">
+          <DataField>Auditee</DataField>
+        </Field>
+        <Field Name="Minor">
+          <DataField>Minor</DataField>
+        </Field>
+        <Field Name="Major">
+          <DataField>Major</DataField>
+        </Field>
+        <Field Name="Root_cause">
+          <DataField>Root_cause</DataField>
+        </Field>
+        <Field Name="Correction">
+          <DataField>Correction</DataField>
+        </Field>
+        <Field Name="Corrective_action">
+          <DataField>Corrective_action</DataField>
+        </Field>
+        <Field Name="Auditee2">
+          <DataField>Auditee2</DataField>
+        </Field>
+        <Field Name="Auditor2">
+          <DataField>Auditor2</DataField>
+        </Field>
+        <Field Name="Date_of_completion">
+          <DataField>Date_of_completion</DataField>
+        </Field>
+        <Field Name="Fully_completed">
+          <DataField>Fully_completed</DataField>
+        </Field>
+        <Field Name="Partially_completed">
+          <DataField>Partially_completed</DataField>
+        </Field>
+        <Field Name="No_action_taken">
+          <DataField>No_action_taken</DataField>
+        </Field>
+        <Field Name="Details1">
+          <DataField>Details1</DataField>
+        </Field>
+        <Field Name="Auditor3">
+          <DataField>Auditor3</DataField>
+        </Field>
+        <Field Name="Auditee3">
+          <DataField>Auditee3</DataField>
+        </Field>
+        <Field Name="Effectiveness">
+          <DataField>Effectiveness</DataField>
+        </Field>
+        <Field Name="Details2">
+          <DataField>Details2</DataField>
+        </Field>
+        <Field Name="Auditor4">
+          <DataField>Auditor4</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

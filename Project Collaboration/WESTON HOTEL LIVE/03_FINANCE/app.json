@@ -1,0 +1,44 @@
+{
+  "id": "af21cfc4-ef28-4adf-a53b-1f59bcdcd081",
+  "name": "FINANCE AND PROCUREMENT",
+  "publisher": "Default publisher",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "7edf8575-e63f-42c1-840b-92187145276e",
+      "name": "BASE APPLICATIONS",
+      "publisher": "Default publisher",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "3bd6f8d6-b25d-447f-b6d2-dc1f30aac0d8",
+      "name": "HR MANAGER",
+      "publisher": "Default publisher",
+      "version": "1.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "20.0.0.0",
+  "idRanges": [
+    {
+      "from": 52178500,
+      "to": 52178860
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "9.0",
+  "features": ["NoImplicitWith"],
+  "target": "OnPrem"
+}

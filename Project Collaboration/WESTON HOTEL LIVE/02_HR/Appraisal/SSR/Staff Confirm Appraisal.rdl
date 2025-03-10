@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="CI_PictureCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CI_PictureCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CI_PictureCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CI_NameCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CI_NameCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CI_NameCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CI_AddressCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CI_AddressCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CI_AddressCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CI_Address2Caption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CI_Address2Caption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CI_Address2Caption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CI_CityCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CI_CityCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CI_CityCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CI_PhoneNoCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CI_PhoneNoCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CI_PhoneNoCaption</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Text1_AppraisalCardConfirmation">
+          <DataField>Text1_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text2_AppraisalCardConfirmation">
+          <DataField>Text2_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text3_AppraisalCardConfirmation">
+          <DataField>Text3_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text4_AppraisalCardConfirmation">
+          <DataField>Text4_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text5_AppraisalCardConfirmation">
+          <DataField>Text5_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text6_AppraisalCardConfirmation">
+          <DataField>Text6_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text7_AppraisalCardConfirmation">
+          <DataField>Text7_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text8_AppraisalCardConfirmation">
+          <DataField>Text8_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text9_AppraisalCardConfirmation">
+          <DataField>Text9_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text10_AppraisalCardConfirmation">
+          <DataField>Text10_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text11_AppraisalCardConfirmation">
+          <DataField>Text11_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="SupervisorID_AppraisalCardConfirmation">
+          <DataField>SupervisorID_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text12_AppraisalCardConfirmation">
+          <DataField>Text12_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Text13_AppraisalCardConfirmation">
+          <DataField>Text13_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="NoSeries_AppraisalCardConfirmation">
+          <DataField>NoSeries_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="CommentsbyHR_AppraisalCardConfirmation">
+          <DataField>CommentsbyHR_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="ApprovalbyVCDVC_AppraisalCardConfirmation">
+          <DataField>ApprovalbyVCDVC_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Defferedfor_AppraisalCardConfirmation">
+          <DataField>Defferedfor_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="VCDVCAction_AppraisalCardConfirmation">
+          <DataField>VCDVCAction_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="VCDVCComments_AppraisalCardConfirmation">
+          <DataField>VCDVCComments_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="Grade_AppraisalCardConfirmation">
+          <DataField>Grade_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="PositionHeldSince_AppraisalCardConfirmation">
+          <DataField>PositionHeldSince_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="StaffName_AppraisalCardConfirmation">
+          <DataField>StaffName_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="AppraisalCode_AppraisalCardConfirmation">
+          <DataField>AppraisalCode_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="StaffNo_AppraisalCardConfirmation">
+          <DataField>StaffNo_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="AppraisalType_AppraisalCardConfirmation">
+          <DataField>AppraisalType_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="AppraisalPeriod_AppraisalCardConfirmation">
+          <DataField>AppraisalPeriod_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="PromotionRecommended_AppraisalCardConfirmation">
+          <DataField>PromotionRecommended_AppraisalCardConfirmation</DataField>
+        </Field>
+        <Field Name="CI_Picture">
+          <DataField>CI_Picture</DataField>
+        </Field>
+        <Field Name="CI_Name">
+          <DataField>CI_Name</DataField>
+        </Field>
+        <Field Name="CI_Address">
+          <DataField>CI_Address</DataField>
+        </Field>
+        <Field Name="CI_Address2">
+          <DataField>CI_Address2</DataField>
+        </Field>
+        <Field Name="CI_City">
+          <DataField>CI_City</DataField>
+        </Field>
+        <Field Name="CI_PhoneNo">
+          <DataField>CI_PhoneNo</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

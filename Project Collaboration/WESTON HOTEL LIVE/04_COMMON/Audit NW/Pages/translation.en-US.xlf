@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="Please update this value">
+    <body>
+      <group id="body">
+        <trans-unit id="Page 1137795946 - Control 1927900938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General Info.</source>
+          <target>General Info.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit-Risk analysis Header - Control General Info. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1137795946 - Control 2826198101 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Risk</source>
+          <target>Risk</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit-Risk analysis Header - Control Risk - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1137795946 - Action 3708782938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Risk Processes</source>
+          <target>&amp;Risk Processes</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit-Risk analysis Header - Action Risk Processes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1137795946 - Action 1351213134 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Submit</source>
+          <target>&amp;Submit</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit-Risk analysis Header - Action &amp;Submit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1072660091 - Action 3708782938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Risk Processes</source>
+          <target>&amp;Risk Processes</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit-  risks under audit card - Action Risk Processes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1072660091 - Action 1351213134 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Submit</source>
+          <target>&amp;Submit</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit-  risks under audit card - Action &amp;Submit - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4122242714 - Control 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target>Entry No.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Risk Actions lines - Control Entry No. - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

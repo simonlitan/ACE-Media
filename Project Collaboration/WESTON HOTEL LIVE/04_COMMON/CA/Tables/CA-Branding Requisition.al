@@ -1,0 +1,125 @@
+table 52178880 "CA-Branding Requisition"
+{
+    DataClassification = ToBeClassified;
+
+    fields
+    {
+        field(1; "No."; Integer)
+        {
+            AutoIncrement = true;
+
+        }
+        field(2; "Code"; Code[30])
+        {
+            DataClassification = ToBeClassified;
+        }
+
+        field(4; "Cost Center"; Text[100])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(5; "Required Date"; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(6; Reason; Text[300])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(7; "User Id"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(8; "No Series"; Code[30])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(9; "Date Created"; DateTime)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(10; "Status"; Option)
+        {
+            OptionMembers = Open,"Pending Approval",Approved,Released;
+            OptionCaption = 'Open,Pending Approval,Approved,Released';
+        }
+        field(11; "Budget"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(12; Department; Code[100])
+        {
+            CaptionClass = '1,2,3';
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1));
+
+            trigger OnValidate()
+            var
+                DimVal: Record "Dimension Value";
+            begin
+                DimVal.RESET;
+                DimVal.SETRANGE(DimVal.Code, "Department");
+                IF DimVal.FIND('-') THEN
+                    "Department Name" := DimVal.Name
+            end;
+        }
+        field(13; "Department Name"; Text[250])
+        {
+        }
+
+        field(14; Region; Code[20])
+        {
+            TableRelation = "Dimension Value".Code WHERE("Dimension Code" = CONST('REGIONS'));
+            trigger OnValidate()
+            var
+                Dimval: Record "Dimension Value";
+            begin
+                if Dimval.Get(Region) then begin
+                    "Region Name" := Dimval.Name;
+                end;
+            end;
+        }
+        field(15; "Region Name"; Text[50])
+        {
+            CalcFormula = Lookup("Dimension Value".Name WHERE(Code = FIELD(Region)));
+            FieldClass = FlowField;
+        }
+    }
+
+    keys
+    {
+        key(Key1; "No.", Code)
+        {
+            Clustered = true;
+        }
+    }
+
+    var
+        myInt: Integer;
+
+    trigger OnInsert()
+    var
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+    begin
+        IF "Code" = '' THEN BEGIN
+            NoSeriesMgt.InitSeries('CABRAND', xRec."No Series", 0D, "Code", "No Series");
+        END;
+        "User Id" := USERID;
+        "Date Created" := CURRENTDATETIME;
+    end;
+
+    trigger OnModify()
+    begin
+
+    end;
+
+    trigger OnDelete()
+    begin
+
+    end;
+
+    trigger OnRename()
+    begin
+
+    end;
+
+}

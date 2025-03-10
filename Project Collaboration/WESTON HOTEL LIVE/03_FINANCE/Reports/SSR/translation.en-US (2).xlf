@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="Please update this value">
+    <body>
+      <group id="body">
+        <trans-unit id="Report 1840210971 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank Acc. Recon. - Test</source>
+          <target>Bank Acc. Recon. - Test</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 must be specified.</source>
+          <target>%1 must be specified.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 is not equal to Total Balance.</source>
+          <target>%1 is not equal to Total Balance.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 must be %2 for %3 %4.</source>
+          <target>%1 must be %2 for %3 %4.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Text002</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 95063322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 %2 does not exist.</source>
+          <target>%1 %2 does not exist.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Text003</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 732759939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 must be %2.</source>
+          <target>%1 must be %2.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Text004</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 1370456556" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Application is wrong.</source>
+          <target>Application is wrong.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Text005</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 2008153173" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The total difference is %1. It must be %2.</source>
+          <target>The total difference is %1. It must be %2.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Text006</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 665770409" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank Account Statement - Test</source>
+          <target>Bank Account Statement - Test</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Bank_Account_Statement___TestCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 1987762555" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target>Page</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType CurrReport_PAGENOCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 4123361118" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Balance Last Statement</source>
+          <target>Balance Last Statement</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Bank_Acc__Reconciliation___Balance_Last_Statement_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 4095120759" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Statement Date</source>
+          <target>Statement Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Bank_Acc__Reconciliation___Statement_Date_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 505639697" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Statement Ending Balance</source>
+          <target>Statement Ending Balance</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Bank_Acc__Reconciliation___Statement_Ending_Balance_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 2490868798" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Warning!</source>
+          <target>Warning!</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType ErrorText_Number_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 999195878" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transaction Date</source>
+          <target>Transaction Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Bank_Acc__Reconciliation_Line__Transaction_Date_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 1163524207" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Value Date</source>
+          <target>Value Date</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType Bank_Acc__Reconciliation_Line__Value_Date_CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 4221438143" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Totals</source>
+          <target>Totals</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType TotalsCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 3743559336" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Warning!</source>
+          <target>Warning!</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType ErrorText_Number__Control97CaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1840210971 - NamedType 4077262372" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Warning!</source>
+          <target>Warning!</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Bank Acc. Recon. - Test - NamedType ErrorText_Number__Control31CaptionLbl</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

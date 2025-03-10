@@ -1,0 +1,41 @@
+{
+  "id": "843c4855-ffcc-4d93-adad-f1e376dcc0df",
+  "name": "Loyalty Program",
+  "publisher": "Appkings solution", 
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "jjk",
+  "dependencies": [
+    {
+      "id": "7edf8575-e63f-42c1-840b-92187145276e",
+      "name": "BASE APPLICATIONS",
+      "publisher": "Default publisher",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "3bd6f8d6-b25d-447f-b6d2-dc1f30aac0d8",
+      "name": "HR MANAGER",
+      "publisher": "Default publisher",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "af21cfc4-ef28-4adf-a53b-1f59bcdcd081",
+      "name": "FINANCE AND PROCUREMENT",
+      "publisher": "Default publisher",
+      "version": "1.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "20.0.0.0",
+  "idRanges": [
+    {
+      "from": 50200,
+      "to": 50300
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://www.navisiontech.com/solutions/easy-eft-help-center/",
+  "showMyCode": false,
+  "target": "OnPrem",  
+  "runtime": "9.0"
+}

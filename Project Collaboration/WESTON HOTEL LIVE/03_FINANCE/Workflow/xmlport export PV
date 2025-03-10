@@ -1,0 +1,65 @@
+xmlport 52178704 "Export PV"
+{
+    Caption = 'Export PV';
+    Direction = Export;
+    Format = VariableText;
+    FormatEvaluate = Legacy;
+    DefaultFieldsValidation = false;
+    UseRequestPage = false;
+
+    schema
+    {
+        textelement(root)
+        {
+            tableelement(PV; "FIN-Payments Header")
+            {
+                fieldattribute("NO."; PV."No.")
+                {
+
+                }
+                fieldattribute(Date; PV.Date)
+                {
+
+                }
+                fieldattribute(Payee; PV.Payee)
+                {
+
+                }
+                fieldattribute("Currency_Code"; PV."Currency Code")
+                {
+
+                }
+                fieldattribute("Bank_Account"; PV."Paying Bank Account")
+                {
+
+                }
+                fieldattribute(Bank_Name; pv."Bank Name")
+                {
+
+                }
+                fieldattribute(VAT_Amount; pv."Total VAT Amount")
+                {
+
+                }
+                fieldattribute(Withholding_Tax; pv."Total Witholding Tax Amount")
+                {
+
+                }
+                fieldattribute(Net_amount; pv."Total Net Amount")
+                {
+
+                }
+                fieldattribute(Cheque_No; PV."Cheque No.")
+                {
+
+                }
+                fieldattribute(Status; pv.Status)
+                {
+
+                }
+            }
+        }
+
+    }
+}
+
