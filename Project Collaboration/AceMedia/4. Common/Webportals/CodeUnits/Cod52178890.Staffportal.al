@@ -1,4 +1,4 @@
-// codeunit 52178890 Staffportal
+// codeunit 52178890 Staffportall
 // {
 //     var
 //         EmployeeCard: Record "HRM-Employee C";
@@ -41,12 +41,12 @@
 //         PettyCashLines: Record "Advance PettyCash Lines";
 //         PettyCashSurrenderHeader: Record "PettyCash Surrender Header";
 //         PettyCashSurrenderLines: Record "PettyCash Surrender Details";
-//         BudgetCommitment: Codeunit "Budget Commitment";
+//        // BudgetCommitment: Codeunit "Budget Commitment";
 //         StoreHeader: Record "PROC-Store Requistion Header";
 //         StoreLines: Record "PROC-Store Requistion Lines";
 //         ItemLedgerEntry: Record "Item Ledger Entry";
-//         ReimbursmentHeader: Record "Reimbursement Header";
-//         ReimbursmentLines: Record "Reimbursement Lines";
+//        // ReimbursmentHeader: Record "Reimbursement Header";
+//         //ReimbursmentLines: Record "Reimbursement Lines";
 //         LeaveRequisition: Record "HRM-Leave Requisition";
 //         LeaveTypes: Record "HRM-Leave Types";
 //         Dates: Record Date;
@@ -1956,22 +1956,22 @@
 //         end;
 //     end;
 
-//     // procedure GetLeaveTransactions(username: Text) Message: Text
-//     // begin
-//     //     HRMLeavePeriod.Reset();
-//     //     HRMLeavePeriod.SetRange(Current, true);
-//     //     HRMLeavePeriod.SetRange(Closed, false);
-//     //     if HRMLeavePeriod.Find('-') then begin
-//     //         HRMLeaveLedger.Reset();
-//     //         HRMLeaveLedger.SetRange("Employee No", username);
-//     //         HRMLeaveLedger.SetRange("Current Leave Period", HRMLeavePeriod.Year);
-//     //         if HRMLeaveLedger.Find('-') then begin
-//     //             repeat
-//     //                 Message += HRMLeaveLedger."Leave Type" + '::' + Format(HRMLeaveLedger."Transaction Date") + '::' + Format(HRMLeaveLedger."Transaction Type") + '::' + Format(HRMLeaveLedger."No. of Days") + '::' + HRMLeaveLedger."Transaction Description" + '::' + HRMLeaveLedger."Current Leave Period" + '[]';
-//     //             until HRMLeaveLedger.Next() = 0;
-//     //         end;
-//     //     end;
-//     // end;
+//     procedure GetLeaveTransactions(username: Text) Message: Text
+//     begin
+//         HRMLeavePeriod.Reset();
+//         HRMLeavePeriod.SetRange(Current, true);
+//         HRMLeavePeriod.SetRange(Closed, false);
+//         if HRMLeavePeriod.Find('-') then begin
+//             HRMLeaveLedger.Reset();
+//             HRMLeaveLedger.SetRange("Employee No", username);
+//             HRMLeaveLedger.SetRange("Current Leave Period", HRMLeavePeriod.Year);
+//             if HRMLeaveLedger.Find('-') then begin
+//                 repeat
+//                     Message += HRMLeaveLedger."Leave Type" + '::' + Format(HRMLeaveLedger."Transaction Date") + '::' + Format(HRMLeaveLedger."Transaction Type") + '::' + Format(HRMLeaveLedger."No. of Days") + '::' + HRMLeaveLedger."Transaction Description" + '::' + HRMLeaveLedger."Current Leave Period" + '[]';
+//                 until HRMLeaveLedger.Next() = 0;
+//             end;
+//         end;
+//     end;
 
 //     // procedure GetBudgetComparisonSummary(username: Text; budgetName: Text) Message: Text
 //     // var

@@ -1,6 +1,7 @@
 codeunit 52178889 Staffportal
 {
     var
+        DocumentAttachment: Record "Document Attachment";
         PayslipYears: Record "PRL-Payroll Periods";
         ResponsibilityCentre: Record "Responsibility Center";
         EmployeeCard: Record "HRM-Employee C";
@@ -56,13 +57,14 @@ codeunit 52178889 Staffportal
         ApprovalEntry.Reset();
         ApprovalEntry.SETRANGE(ApprovalEntry."Document No.", DocumentNo);
         IF ApprovalEntry.FIND('-') THEN BEGIN
-        repeat
-            Message += ApprovalEntry."Document No."+ '::' +Format(ApprovalEntry."Entry No.") + '::'+ Format(ApprovalEntry."Sequence No.")+'::'+ Format(ApprovalEntry."Date-Time Sent for Approval")+'::' + ApprovalEntry."Sender ID" + '::'+ ApprovalEntry."Approver ID"  +'::'+ Format(ApprovalEntry.Comment) +'::'+FORMAT(ApprovalEntry.Status);
+            repeat
+                Message += ApprovalEntry."Document No." + '::' + Format(ApprovalEntry."Entry No.") + '::' + Format(ApprovalEntry."Sequence No.") + '::' + Format(ApprovalEntry."Date-Time Sent for Approval") + '::' + ApprovalEntry."Sender ID" + '::' + ApprovalEntry."Approver ID" + '::' + Format(ApprovalEntry.Comment) + '::' + FORMAT(ApprovalEntry.Status);
             until ApprovalEntry.Next() = 0;
         end else begin
             Message := 'No Approval Entries Found';
         end;
     end;
+
     procedure CheckValidStaffNo(username: Text) Message: Text
     begin
         EmployeeCard.Reset();
@@ -204,7 +206,7 @@ codeunit 52178889 Staffportal
         END;
     end;
 
-    procedure ValidateStartDate("Starting Date": Date)
+    procedure ValidateStartDate("Starting Date": Date) Msg: Text
     begin
         dates.Reset();
         dates.SETRANGE(dates."Period Start", "Starting Date");
@@ -212,9 +214,9 @@ codeunit 52178889 Staffportal
         IF dates.FIND('-') THEN
             IF ((dates."Period Name" = 'Sunday') OR (dates."Period Name" = 'Saturday')) THEN BEGIN
                 IF (dates."Period Name" = 'Sunday') THEN
-                    ERROR('You can not start your leave on a Sunday')
+                    Msg := 'You can not start your leave on a Sunday'
                 ELSE
-                    IF (dates."Period Name" = 'Saturday') THEN ERROR('You can not start your leave on a Saturday')
+                    IF (dates."Period Name" = 'Saturday') THEN Msg := 'You can not start your leave on a Saturday'
             END;
 
         BaseCalendar.Reset();
@@ -224,9 +226,9 @@ codeunit 52178889 Staffportal
             REPEAT
                 IF BaseCalendar.Nonworking = TRUE THEN BEGIN
                     IF BaseCalendar.Description <> '' THEN
-                        ERROR('You can not start your Leave on a Holiday - ''' + BaseCalendar.Description + '''')
+                        Msg := 'You can not start your Leave on a Holiday - ''' + BaseCalendar.Description + ''''
                     ELSE
-                        ERROR('You can not start your Leave on a Holiday');
+                        Msg := 'You can not start your Leave on a Holiday';
                 END;
             UNTIL BaseCalendar.NEXT = 0;
         END;
@@ -240,9 +242,9 @@ codeunit 52178889 Staffportal
                 IF ((DATE2DMY("Starting Date", 1) = BaseCalendar."Date Day") AND (DATE2DMY("Starting Date", 2) = BaseCalendar."Date Month")) THEN BEGIN
                     IF BaseCalendar.Nonworking = TRUE THEN BEGIN
                         IF BaseCalendar.Description <> '' THEN
-                            ERROR('You can not start your Leave on a Holiday - ''' + BaseCalendar.Description + '''')
+                            Msg := 'You can not start your Leave on a Holiday - ''' + BaseCalendar.Description + ''''
                         ELSE
-                            ERROR('You can not start your Leave on a Holiday');
+                            Msg := 'You can not start your Leave on a Holiday';
                     END;
                 END;
             UNTIL BaseCalendar.NEXT = 0;
@@ -332,30 +334,43 @@ codeunit 52178889 Staffportal
             /*repeat
                 Message += ResponsibilityCentre.Code + '::' + ResponsibilityCentre.Name + '[]';
             until ResponsibilityCentre.Next() = 0;*/
-            Message := ResponsibilityCentre.Code +  '::' + ResponsibilityCentre.Name + '[]';
+            Message := ResponsibilityCentre.Code + '::' + ResponsibilityCentre.Name + '[]';
         end;
 
     end;
 
-    procedure GetRelievers() Message: Text
+    procedure GetEmployees() Message: Text
     begin
         EmployeeCard.Reset();
         EmployeeCard.SetRange(Status, EmployeeCard.Status::Active);
         EmployeeCard.SetRange("On Leave", false);
+        //EmployeeCard.SetFilter("No.", '<>%1', username);
         if EmployeeCard.Find('-') then begin
             repeat
-                Message += EmployeeCard."No." + '::' + EmployeeCard."First Name" + ' ' + EmployeeCard."Last Name" + '[]';
+                Message += EmployeeCard."No." + '::' + GetEmployeeName(EmployeeCard."No.") + '[]';
             until
             EmployeeCard.Next() = 0;
         end;
 
     end;
 
+    procedure GetRelieverDetails(relieverNo: Text) Message: Text
+    begin
+        EmployeeCard.Reset();
+        EmployeeCard.SetRange(EmployeeCard."No.", relieverNo);
+        if EmployeeCard.Find('-') then begin
+            Message := EmployeeCard."No." + '::' + EmployeeCard."E-Mail" + '::' + EmployeeCard."Company E-Mail" + '::' + EmployeeCard."First Name" + ' ' + EmployeeCard."Middle Name" + ' ' + EmployeeCard."Last Name";
+        end;
+    end;
+
+
     procedure GetCustomers() Message: Text
     var
         customerlist: Record "Customer";
+        postingGroup: Text;
     begin
         customerlist.Reset();
+        customerlist.SetRange(customerlist."Customer Posting Group", 'IMPREST');
         if customerlist.Find('-') then begin
             repeat
                 Message += customerlist."No." + '::' + customerlist."Name" + '[]';
@@ -378,68 +393,27 @@ codeunit 52178889 Staffportal
     var
         LeaveTypes: Record "HRM-Leave Types";
         LeaveTypeList: Text;
-        GenderOption: Integer;
     begin
-        LeaveTypeList := '';
-        LeaveTypes.Reset();
-
-        case gender of
-            'Male':
-                GenderOption := 1;
-            'Female':
-                GenderOption := 2;
-            else
-                GenderOption := 0;
+        if gender = 'Male' then begin
+            LeaveTypes.Reset();
+            LeaveTypes.SetFilter(LeaveTypes.Code, '<>%1', '');
+            if LeaveTypes.Find('-') then begin
+                repeat
+                    if (LeaveTypes.Gender = LeaveTypes.Gender::Both) or (LeaveTypes.Gender = LeaveTypes.Gender::Male) then Message += LeaveTypes.Code + '::' + LeaveTypes.Description + '[]';
+                until LeaveTypes.Next() = 0;
+            end
+        end else begin
+            LeaveTypes.Reset();
+            LeaveTypes.SetFilter(LeaveTypes.Code, '<>%1', '');
+            if LeaveTypes.Find('-') then begin
+                repeat
+                    if (LeaveTypes.Gender = LeaveTypes.Gender::Both) or (LeaveTypes.Gender = LeaveTypes.Gender::Female) then Message += LeaveTypes.Code + '::' + LeaveTypes.Description + '[]';
+                until LeaveTypes.Next() = 0;
+            end
         end;
-
-        LeaveTypes.SetFilter(Gender, '0|%1', GenderOption);
-        // LeaveTypes.SetFilter(Code, '<> %1', 'ANNUAL LEAVE');
-
-        if LeaveTypes.FindSet() then begin
-            repeat
-                if LeaveTypeList <> '' then
-                    LeaveTypeList := LeaveTypeList + '|';
-                LeaveTypeList := LeaveTypeList + LeaveTypes.Code + '::' + LeaveTypes.Description; // Concatenate Code and Description
-            until LeaveTypes.Next() = 0;
-        end;
-
-        Message := LeaveTypeList;
-        exit(Message);
     end;
 
-    procedure GetLeaveTypes1(gender: Text) Message: Text
-    var
-        LeaveTypes: Record "HRM-Leave Types";
-        LeaveTypeList: Text;
-        GenderOption: Integer;
-    begin
-        LeaveTypeList := '';
-        LeaveTypes.Reset();
 
-        case gender of
-            'Male':
-                GenderOption := 1;
-            'Female':
-                GenderOption := 2;
-            else
-                GenderOption := 0;
-        end;
-
-        LeaveTypes.SetFilter(Gender, '0|%1', GenderOption);
-        // LeaveTypes.SetFilter(Code, '<> %1', 'ANNUAL LEAVE');
-        // LeaveTypes.SetFilter(code, '<> %1', 'OFF DAY');
-
-        if LeaveTypes.FindSet() then begin
-            repeat
-                if LeaveTypeList <> '' then
-                    LeaveTypeList := LeaveTypeList + '|';
-                LeaveTypeList := LeaveTypeList + LeaveTypes.Code + '::' + LeaveTypes.Description; // Concatenate Code and Description
-            until LeaveTypes.Next() = 0;
-        end;
-
-        Message := LeaveTypeList;
-        exit(Message);
-    end;
 
     procedure DetermineLeaveReturnDate(fBeginDate: Date; fDays: Decimal; "Leave Type": Text) fReturnDate: Date
     begin
@@ -483,6 +457,7 @@ codeunit 52178889 Staffportal
             until LeaveRequisition.Next() = 0;
         end;
     end;
+
 
     procedure HasPendingLeaveApplication(username: Text) Message: Text;
     begin
@@ -588,6 +563,24 @@ codeunit 52178889 Staffportal
         LeaveTypes.SetRange(LeaveTypes.Code, LeaveType);
         if LeaveTypes.Find('-') then
             Message := Format(LeaveTypes.Days)
+    end;
+
+    procedure GetLeaveTransactions(username: Text) Message: Text
+    begin
+        HRMLeavePeriod.Reset();
+        HRMLeavePeriod.SetRange(Current, true);
+        HRMLeavePeriod.SetRange(Closed, false);
+        if HRMLeavePeriod.Find('-') then begin
+            HRMLeaveLedger.Reset();
+            HRMLeaveLedger.SetRange("Employee No", username);
+
+            // HRMLeaveLedger.SetRange("Current Leave Period", HRMLeavePeriod.Year);
+            if HRMLeaveLedger.Find('-') then begin
+                repeat
+                    Message += HRMLeaveLedger."Leave Type" + '::' + Format(HRMLeaveLedger."Transaction Date") + '::' + Format(HRMLeaveLedger."Transaction Type") + '::' + Format(HRMLeaveLedger."No. of Days") + '::' + HRMLeaveLedger."Transaction Description" + '::' + Format(HRMLeaveLedger."Leave Period") + '[]';
+                until HRMLeaveLedger.Next() = 0;
+            end;
+        end;
     end;
 
     procedure GetLeaveDetails(LeaveNo: Code[20]) ReturnMsg: Text;
@@ -701,7 +694,7 @@ codeunit 52178889 Staffportal
             Message := 'FAILED' + '::';
     end;
 
-    procedure HRMLeaveApplication(username: Text; reliever: Text; leaveType: Text; appliedDays: Decimal; startDate: Date; endDate: Date; returnDate: Date; purpose: Text; responsibilityCenter: Text) Message: Text
+    procedure HRMLeaveApplication(username: Text; reliever: Text; leaveType: Text; appliedDays: Decimal; startDate: Date; endDate: Date; returnDate: Date; purpose: Text; responsibilityCenter: Text; leaveBalance: Decimal) Message: Text
     var
         NextLeaveNo: Text;
     begin
@@ -709,35 +702,64 @@ codeunit 52178889 Staffportal
         NextLeaveNo := NoSeriesMngnt.GetNextNo(HRSetup."Leave Application Nos.", 0D, true);
         LeaveRequisition.Init();
         LeaveRequisition."No." := NextLeaveNo;
+        LeaveRequisition.Date := Today();
         LeaveRequisition."No. Series" := HRSetup."Leave Application Nos.";
         LeaveRequisition."Employee No" := username;
         LeaveRequisition.Validate("Employee No");
         LeaveRequisition."Reliever No." := reliever;
-        LeaveRequisition.Validate("Reliever No.");
         LeaveRequisition."Leave Type" := leaveType;
         LeaveRequisition."Applied Days" := appliedDays;
         LeaveRequisition."Starting Date" := startDate;
-        LeaveRequisition."End Date" := endDate;
-        LeaveRequisition."Return Date" := returnDate;
+        // LeaveRequisition."End Date" := endDate;
+        // LeaveRequisition."Return Date" := returnDate;
+        LeaveRequisition.Validate("Starting Date");
         LeaveRequisition.Purpose := purpose;
         LeaveRequisition."Responsibility Center" := responsibilityCenter;
-        LeaveRequisition."User ID" := UserId;
+        LeaveRequisition."User ID" := getEmployeeUserId(username);
         LeaveRequisition."No. Series" := HRSetup."Leave Application Nos.";
-        LeaveRequisition.Date := Today();
+        LeaveRequisition."Leave Balance" := leaveBalance;
+
+        EmployeeCard.Reset();
+        EmployeeCard.SetRange(EmployeeCard."No.", reliever);
+        if EmployeeCard.Find('-') then begin
+            LeaveRequisition."Reliever Name" := EmployeeCard."First Name" + ' ' + EmployeeCard."Middle Name" + ' ' + EmployeeCard."Last Name";
+        end;
 
         EmployeeCard.Reset();
         EmployeeCard.SetRange(EmployeeCard."No.", username);
         if EmployeeCard.Find('-') then begin
             LeaveRequisition."Department Code" := EmployeeCard."Global Dimension 1 Code";
-            // LeaveRequisition."Global Dimension 2 Code" := EmployeeCard."Global Dimension 2 Code";
+            //LeaveRequisition."Global Dimension 2 Code" := EmployeeCard."Global Dimension 2 Code";
         end;
 
-        if LeaveRequisition.Insert() then begin
-            Message := 'SUCCESS' + '::' + LeaveRequisition."No.";
-        end else begin
-            Message := 'FAILED' + '::';
+        LeaveRequisition.Insert();
+        Message := NextLeaveNo;
+    end;
+
+    procedure getEmployeeUserId(StaffNum: Text) Msg: Text;
+    var
+        userSetup: record "User Setup";
+    begin
+        userSetup.Reset();
+        userSetup.SetRange("Employee No.", StaffNum);
+        if userSetup.Find('-') then
+            Msg := userSetup."User ID"
+        else
+            Msg := 'Not found';
+    end;
+
+    procedure OnsendLeaveRequisitionForApproval(leaveNo: Text) Message: Text
+    begin
+        LeaveRequisition.Reset();
+        LeaveRequisition.SetRange(LeaveRequisition."No.", leaveNo);
+        if LeaveRequisition.Find('-') then begin
+            if ApprovalMngnt2.IsLeaveEnabled(LeaveRequisition) = false then
+                Message := 'No approval workflow enabled!';
+            ApprovalMngnt2.OnSendLeaveforApproval(LeaveRequisition);
+            Message := 'SUCCESS';
         end;
     end;
+
 
     procedure GetLeaveRelieverDetails(relieverNo: Text) Message: Text
     begin
@@ -748,19 +770,6 @@ codeunit 52178889 Staffportal
         end;
     end;
 
-    procedure OnsendLeaveRequisitionForApproval(leaveNo: Text) Message: Text
-    begin
-        LeaveRequisition.Reset();
-        LeaveRequisition.SetRange(LeaveRequisition."No.", leaveNo);
-        if LeaveRequisition.Find('-') then begin
-            if ApprovalMngnt2.IsLeaveEnabled(LeaveRequisition) = true then begin
-                ApprovalMngnt2.OnSendLeaveforApproval(LeaveRequisition);
-                Message := 'SUCCESS';
-            end else begin
-                Message := 'No approval workflow set';
-            end;
-        end;
-    end;
 
     procedure OnCancelLeaveApplication(leaveNo: Text) Message: Text
     begin
@@ -771,26 +780,31 @@ codeunit 52178889 Staffportal
         end;
     end;
 
-    procedure GetPayslipYears() Message: Text
+    Procedure GetPayslipYears() Message: Text
 
     begin
         PayslipYears.Reset();
-        // PayslipYears.SetRange(Closed, true);
-        // PayslipYears.SetRange("Allow View of Online Payslips", true);
-        repeat
-            if PayslipYears.Find('-') then begin
-                Message := Format(PayslipYears."Period Year") + '[]';
-            end
-        until PayslipYears.Next() = 0;
+        PayslipYears.SetRange(Closed, true);
+        PayslipYears.SetRange("Allow View of Online Payslips", true);
+
+        if PayslipYears.FindSet() then begin
+            repeat
+                Message += Format(PayslipYears."Period Year") + '[]';
+            until PayslipYears.Next() = 0;
+        end
+
     end;
 
-    procedure GetPayslipMonths() Message: Text
+
+
+    procedure GetPayslipMonths(currentYear: Integer) Message: Text
     var
 
         MonthName: Text;
     begin
         PayslipYears.Reset();
         PayslipYears.SetRange(Closed, true);
+        PayslipYears.SetRange("Period Year", currentYear);
         PayslipYears.SetRange("Allow View of Online Payslips", true);
 
         if PayslipYears.FindSet() then begin
@@ -835,6 +849,8 @@ codeunit 52178889 Staffportal
                 exit('Invalid Month'); // Handles unexpected values
         end;
     end;
+
+
 
     procedure GenerateStaffLeaveStatement(username: Text; fileNameFromApp: Text)
     var
@@ -952,8 +968,31 @@ codeunit 52178889 Staffportal
             end;
         end;
     end;
+
+    procedure GetReceiptAmount(receiptNo: Text) Message: Decimal
+    var
+        ReceiptLines: Record "FIN-Receipt Line q";
+    begin
+        ReceiptLines.Reset();
+        ReceiptLines.SetRange(No, receiptNo);
+        if ReceiptLines.Find('-') then Message := ReceiptLines.Amount;
+    end;
+
+    procedure GetQuantityInStore(itemNo: Text) Message: Decimal
+    var
+        ItemLedgerEntry: Record "Item Ledger Entry";
+    begin
+        ItemLedgerEntry.Reset();
+        ItemLedgerEntry.SetRange("Item No.", itemNo);
+        if ItemLedgerEntry.Find('-') then begin
+            repeat
+                Message := Message + ItemLedgerEntry.Quantity;
+            until ItemLedgerEntry.Next() = 0;
+        end;
+    end;
+
     procedure GetMyStoresRequests(username: Text) Message: Text
-    
+
     begin
         StoreRequisitionHeader.Reset();
         StoreRequisitionHeader.SetRange(StoreRequisitionHeader."Requester ID", username);
@@ -966,6 +1005,7 @@ codeunit 52178889 Staffportal
             Message := 'No requisitions found';
         end;
     end;
+
     procedure CreateStoreRequisitionHeader(username: Text; requisitionType: Integer; requiredDate: Date; department: Text; resCenter: text; issuingStore: Text; description: Text) Message: Text
     var
         NextStoreNo: Text;
@@ -1040,7 +1080,8 @@ codeunit 52178889 Staffportal
             end;
         end;
     end;
-     procedure DeleteStoreLine(lineNo: Integer) Message: Text
+
+    procedure DeleteStoreLine(lineNo: Integer) Message: Text
     begin
         StoreRequisitionLines.Reset();
         StoreRequisitionLines.SetRange(StoreRequisitionLines."Line No.", lineNo);
@@ -1121,11 +1162,11 @@ codeunit 52178889 Staffportal
         ClaimsHeader: Record "FIN-Staff Claims Header";
     begin
         ClaimsHeader.Reset();
-        ClaimsHeader.SetRange(ClaimsHeader.Cashier, username);
+        ClaimsHeader.SetRange(ClaimsHeader."Account No.", username);
 
         if ClaimsHeader.Find('-') then begin
             repeat
-                Message += ClaimsHeader."No." + '::' + Format(ClaimsHeader.Date) + '::' + ClaimsHeader.Payee + '::' + ClaimsHeader.Purpose + '::' + Format(ClaimsHeader.Status) + '[]'
+                Message += ClaimsHeader."No." + '::' + Format(ClaimsHeader.Date) + '::' + ClaimsHeader.Payee + '::' + Format(ClaimsHeader."Total Net Amount") + '::' + Format(ClaimsHeader.Status) + '[]'
             until ClaimsHeader.Next() = 0;
         end else begin
             Message := 'No Claims';
@@ -1133,15 +1174,15 @@ codeunit 52178889 Staffportal
     end;
 
     procedure GetClaimLines(claimNo: text) Message: Text
-    
+
     begin
         ClaimLines.Reset();
         ClaimLines.SetRange(ClaimLines."Document No.", claimNo);
 
         if ClaimLines.Find('-') then begin
             repeat
-            Message += ClaimLines."Advance Type" + '::' + ClaimLines."Account No." + '::' + ClaimLines."Account Name" + '::' +
-            Format(ClaimLines.Amount) + '::' + ClaimLines.SystemId + '[]' ;
+                Message += ClaimLines."Advance Type" + '::' + ClaimLines."Account No." + '::' + ClaimLines."Account Name" + '::' +
+                Format(ClaimLines.Amount) + '::' + ClaimLines.SystemId + '[]';
             until ClaimLines.Next() = 0;
         end else begin
             Message := 'No lines found'
@@ -1149,8 +1190,22 @@ codeunit 52178889 Staffportal
 
     end;
 
+    procedure GetDimensions(dimensionCode: text) Message: Text
+    var
+        Dimension: record "Dimension Value";
+    begin
+        Dimension.Reset();
+        Dimension.SetRange("Dimension Code", dimensionCode);
+        if Dimension.Find('-') then begin
+            repeat
+                Message += Dimension.Code + '::' + Dimension.Name + '[]';
+            until Dimension.next() = 0;
+        end;
+    end;
 
-    procedure CreateClaimRequisitionHeader(username: Text; department: Text; responsibilityCenter: Text; purpose: Text) Message: Text
+
+
+    procedure CreateClaimRequisitionHeader(username: Text; responsibilityCenter: Text; purpose: Text; jobCode: Text; clientCode: Text) Message: Text
     var
         NextClaimNo: Text;
         FullName: Text;
@@ -1164,16 +1219,18 @@ codeunit 52178889 Staffportal
         ClaimRequisition.Date := Today();
         ClaimRequisition."Account No." := username;
         ClaimRequisition.Validate("Account No.");
-        ClaimRequisition.Cashier := username;
+        ClaimRequisition.Cashier := getEmployeeUserId(username);
         ClaimRequisition.Purpose := purpose;
         ClaimRequisition."Responsibility Center" := responsibilityCenter;
         ClaimRequisition.Posted := false;
         ClaimRequisition.Status := ClaimRequisition.Status::Pending;
         ClaimRequisition."No. Series" := CashOfficeSetup."Staff Claim No";
-        // ClaimRequisition."Global Dimension 1 Code" := directorate;
-        // ClaimRequisition.Validate("Global Dimension 1 Code");
-        ClaimRequisition."Global Dimension 1 Code" := department;
+        ClaimRequisition."Global Dimension 1 Code" := clientCode;
         ClaimRequisition.Validate("Global Dimension 1 Code");
+        ClaimRequisition."Shortcut Dimension 2 Code" := jobCode;
+        ClaimRequisition.Validate("Shortcut Dimension 2 Code");
+        // ClaimRequisition."Global Dimension 1 Code" := department;
+        // ClaimRequisition.Validate("Global Dimension 1 Code");
         ClaimRequisition."Account Type" := ClaimRequisition."Account Type"::Customer;
 
         EmployeeCard.Reset();
@@ -1190,8 +1247,33 @@ codeunit 52178889 Staffportal
             Message := 'FAILED' + '::';
         end;
     end;
+ procedure GetClaimTypes() Message: Text
+ var
+     ReceiptPaymentTypes: Record "FIN-Receipts and Payment Types";
+    begin
+        ReceiptPaymentTypes.Reset();
+        ReceiptPaymentTypes.SetRange(Type, ReceiptPaymentTypes.Type::Claim);
+        if ReceiptPaymentTypes.Find('-') then begin
+            repeat
+                Message += ReceiptPaymentTypes.Code + '::' + ReceiptPaymentTypes.Description + '[]';
+            until ReceiptPaymentTypes.Next() = 0;
+        end;
+    end;
+     procedure GetGLAccounts() Message: Text
+    var
+        GLAccounts: Record "G/L Account";
+    begin
+        GLAccounts.Reset();
+        // GlAccount.SetRange("Account Category", GLAccounts."Account Category"::Expense);
+        // GlAccount.SetRange("Direct Posting", true);
+        if GlAccount.Find('-') then begin
+            repeat
+                Message += GlAccount."No." + '::' + GlAccount.Name + '[]';
+            until GlAccount.Next() = 0;
+        end;
 
-    procedure InsertClaimRequisitionLines(claimNo: Text; claimType: Text; amount: Decimal) Message: Text
+    end;
+    procedure InsertClaimRequisitionLines(claimNo: Text; claimType: Text; amount: Decimal; AccNo: Text ; clientCode: Text; jobCode: Text; receiptNo: Text; expenditureDate: Date; purpose: Text) Message: Text
     begin
         ClaimRequisition.Reset();
         ClaimRequisition.SetRange(ClaimRequisition."No.", claimNo);
@@ -1200,6 +1282,15 @@ codeunit 52178889 Staffportal
             ClaimLines."Document No." := claimNo;
             ClaimLines."Advance Type" := claimType;
             ClaimLines.Validate("Advance Type");
+            ClaimLines."Account No." := AccNo;
+            ClaimLines.Validate("Account No.");
+            ClaimLines."Global Dimension 1 Code" := clientCode;
+            ClaimLines.Validate("Global Dimension 1 Code");
+            ClaimLines."Shortcut Dimension 2 Code" := jobCode; 
+            ClaimLines.Validate("Shortcut Dimension 2 Code");
+            ClaimLines."Claim Receipt No" := receiptNo;
+            ClaimLines."Expenditure Date" := expenditureDate;
+            ClaimLines.Purpose  := purpose;
             ClaimLines.Amount := amount;
             ClaimLines."Amount LCY" := amount;
             ClaimLines."Global Dimension 1 Code" := ClaimRequisition."Global Dimension 1 Code";
@@ -1254,7 +1345,7 @@ codeunit 52178889 Staffportal
     end;
 
     //procedure CreateImprestRequisitionHeader(username: Text; directorate: Text; department: Text; resCenter: Text; purpose: Text) Message: Text;
-    procedure CreateImprestRequisitionHeader(username: Text; department: Text; resCenter: Text; purpose: Text) Message: Text;
+    procedure CreateImprestRequisitionHeader(username: Text; resCenter: Text; purpose: Text; clientCode: Text; jobCode: Text) Message: Text;
     var
         NextImprestNo: Text;
         fullName: Text;
@@ -1265,32 +1356,35 @@ codeunit 52178889 Staffportal
         ImprestHeader.Init();
         ImprestHeader."No." := NextImprestNo;
         ImprestHeader.Date := Today();
-        //  ImprestHeader."Global Dimension 1 Code" := directorate;
-       // ImprestHeader."Global Dimension 1 Code" := department;
-       // ImprestHeader.Validate("Global Dimension 1 Code");
-        //ImprestHeader.Validate("Shortcut Dimension 2 Code");
         ImprestHeader."No. Series" := CashOfficeSetup."Imprest Req No";
         ImprestHeader."Responsibility Center" := resCenter;
         ImprestHeader."Account Type" := ImprestHeader."Account Type"::Customer;
-        //ImprestHeader."Account No." := username;
-        //ImprestHeader.Validate("Account No.");
+
         ImprestHeader.Purpose := purpose;
-        ImprestHeader."Requested By" := username;
+        ImprestHeader."Requested By" := getEmployeeUserId(username);
         ImprestHeader."Employee No" := username;
-        ImprestHeader.Cashier := username;
-        customerlist.Reset();
-        customerlist.SetRange(customerlist."No.", username);
-        if customerlist.Find('-') then begin
-            ImprestHeader."Account No." := customerlist."No.";
-            ImprestHeader.Payee := customerlist.Name;
-        end;
+        ImprestHeader.Cashier := getEmployeeUserId(username);
+        ImprestHeader."Account No." := username;
+        ClaimRequisition."Global Dimension 1 Code" := clientCode;
+        ClaimRequisition.Validate("Global Dimension 1 Code");
+        ClaimRequisition."Shortcut Dimension 2 Code" := jobCode;
+        ClaimRequisition.Validate("Shortcut Dimension 2 Code");
+        // ImprestHeader.Validate("Account No.");
+        // customerlist.Reset();
+        // customerlist.SetRange(customerlist."No.", username);
+
+        // if customerlist.Find('-') then begin
+        //     ImprestHeader."Account No." := customerlist."No.";
+        //     ImprestHeader.Validate("Account No.");
+        //  //   ImprestHeader.Payee := customerlist.Name;
+        // end;
 
         EmployeeCard.Reset();
         EmployeeCard.SetRange(EmployeeCard."No.", username);
         if EmployeeCard.Find('-') then begin
             fullName := EmployeeCard."First Name" + ' ' + EmployeeCard."Middle Name" + ' ' + EmployeeCard."Last Name";
-            //ImprestHeader.Payee := fullName;
-            ImprestHeader."On Behalf Of" := fullName;
+            ImprestHeader.Payee := fullName;
+            ImprestHeader."On Behalf Of" := EmployeeCard.fullName;
             ImprestHeader."payees bank code" := EmployeeCard."Main Bank";
             ImprestHeader."payees bank name" := EmployeeCard."Main Bank Name";
             ImprestHeader."payees Branch code" := EmployeeCard."Branch Bank";
@@ -1358,19 +1452,7 @@ codeunit 52178889 Staffportal
         end;
     end;
 
-    procedure OnSendImprestRequisitionForApproval(imprestNo: Text) Message: Text
-    begin
-        ImprestHeader.Reset();
-        ImprestHeader.SetRange(ImprestHeader."No.", imprestNo);
-        if ImprestHeader.Find('-') then begin
-            if ApprovalMngnt.IsImprestEnabled(ImprestHeader) = true then begin
-                ApprovalMngnt.OnSendImprestforApproval(ImprestHeader);
-                Message := 'SUCCESS';
-            end else begin
-                Message := 'No approval workflow enabled';
-            end;
-        end;
-    end;
+
 
     procedure OnCancelImprestRequisition(imprestNo: Text)
     begin
@@ -1414,7 +1496,8 @@ codeunit 52178889 Staffportal
             Message := 'No Imprests';
         end;
     end;
-     procedure GetImprestLines(MemoNo: Text) Message: Text
+
+    procedure GetImprestLines(MemoNo: Text) Message: Text
     var
         ImprestLines: Record "FIN-Imprest Lines";
     begin
@@ -1428,6 +1511,7 @@ codeunit 52178889 Staffportal
             Message := 'No Imprests lines';
         end;
     end;
+
     procedure GetAdvancetype(Type: Integer) Message: Text
     var
         AdvanceType: Record "FIN-Receipts and Payment Types";
@@ -1596,33 +1680,34 @@ codeunit 52178889 Staffportal
         end;
     end;
 
-    procedure GetMyPettyCashRequests (username: Text) Message:Text
+    procedure GetMyPettyCashRequests(username: Text) Message: Text
     begin
         PettyCashHeader.Reset();
         PettyCashHeader.SetRange(PettyCashHeader."Account No.", username);
         if PettyCashHeader.Find('-') then begin
             repeat
-            Message += PettyCashHeader."No." + '::' + Format(PettyCashHeader.Date) + '::' + PettyCashHeader.payee + '::' 
-            + Format(PettyCashHeader."Payment Amount") + '::' + Format(PettyCashHeader.Status) + '[]' ;
+                Message += PettyCashHeader."No." + '::' + Format(PettyCashHeader.Date) + '::' + PettyCashHeader.payee + '::'
+                + Format(PettyCashHeader."Payment Amount") + '::' + Format(PettyCashHeader.Status) + '[]';
             until PettyCashHeader.Next() = 0;
         end;
 
     end;
-   procedure GetPettyCashLines(DocNo: Text) Message: Text
-   
+
+    procedure GetPettyCashLines(DocNo: Text) Message: Text
+
     begin
         PettyCashLines.Reset();
         PettyCashLines.SetRange(PettyCashLines."Document No.", DocNo);
         if PettyCashLines.Find('-') then begin
             repeat
-                Message += PettyCashLines."Advance Type" + '::' + PettyCashLines."Account No." + '::' + PettyCashLines."Account Name" + '::' + Format(PettyCashLines.Amount) + '::'+ PettyCashLines.SystemId + '[]'
+                Message += PettyCashLines."Advance Type" + '::' + PettyCashLines."Account No." + '::' + PettyCashLines."Account Name" + '::' + Format(PettyCashLines.Amount) + '::' + PettyCashLines.SystemId + '[]'
             until PettyCashLines.Next() = 0;
         end else begin
             Message := 'No Petty cash lines';
         end;
     end;
 
-    procedure CreatePettyCashRequisitionHeader(username: Text; directorate: Text; department: Text; resCenter: Text; purpose: Text) Message: Text
+    procedure CreatePettyCashRequisitionHeader(username: Text; department: Text; resCenter: Text; purpose: Text) Message: Text
     var
         NextPettyCashNo: Text;
         fullName: Text;
@@ -1632,7 +1717,7 @@ codeunit 52178889 Staffportal
         PettyCashHeader.Init();
         PettyCashHeader."No." := NextPettyCashNo;
         PettyCashHeader.Date := Today();
-        PettyCashHeader."Global Dimension 1 Code" := directorate;
+        //  PettyCashHeader."Global Dimension 1 Code" := directorate;
         PettyCashHeader."Global Dimension 2 Code" := department;
         PettyCashHeader.Validate("Global Dimension 1 Code");
         PettyCashHeader.Validate("Global Dimension 2 Code");
@@ -1747,23 +1832,25 @@ codeunit 52178889 Staffportal
             Message := PettyCashHeader."No." + '::' + PettyCashHeader.Purpose + '::' + PettyCashHeader."Responsibility Center";
         end;
     end;
-     procedure GetMyPettyCashSurrenders (username: Text) Message:Text
+
+    procedure GetMyPettyCashSurrenders(username: Text) Message: Text
     begin
         PettyCashSurrenderHeader.Reset();
         PettyCashSurrenderHeader.SetRange(PettyCashSurrenderHeader."Account No.", username);
         if PettyCashSurrenderHeader.Find('-') then begin
             repeat
-            Message += PettyCashSurrenderHeader."No." + '::' + Format(PettyCashSurrenderHeader."Date Posted") + '::' + PettyCashSurrenderHeader.payee + '::' 
-            + Format(PettyCashSurrenderHeader.Amount) + '::' + Format(PettyCashSurrenderHeader.Status) + '[]' ;
+                Message += PettyCashSurrenderHeader."No." + '::' + Format(PettyCashSurrenderHeader."Date Posted") + '::' + PettyCashSurrenderHeader.payee + '::'
+                + Format(PettyCashSurrenderHeader.Amount) + '::' + Format(PettyCashSurrenderHeader.Status) + '[]';
             until PettyCashSurrenderHeader.Next() = 0;
         end;
 
     end;
+
     procedure GetPettyCashSurrenderLines(DocNo: Text) Message: Text
-   
+
     begin
         PettyCashSurrenderLines.Reset();
-        PettyCashSurrenderLines.SetRange(PettyCashSurrenderLines."Doc No." , DocNo);
+        PettyCashSurrenderLines.SetRange(PettyCashSurrenderLines."Doc No.", DocNo);
         if PettyCashSurrenderLines.Find('-') then begin
             repeat
                 Message += PettyCashSurrenderLines."Account No." + '::' + PettyCashLines."Account Name" + '::' + Format(PettyCashLines.Amount) + '[]'
@@ -1772,6 +1859,7 @@ codeunit 52178889 Staffportal
             Message := 'No Petty cash surrender lines';
         end;
     end;
+
     procedure LoadPettyCashSurrenderSurrenderLineDetails(surrenderNo: Text; accountNo: Text) Message: Text
     begin
         PettyCashSurrenderLines.Reset();
@@ -1826,43 +1914,16 @@ codeunit 52178889 Staffportal
             end;
         end;
     end;
-    //     procedure UpdatePettyCashSurrenderHeader(surrenderNo: Text; pettyCashNo: Text; resCenter: Text) Message: Text
-    // begin
-    //     PettyCashSurrenderHeader.Reset();
-    //     PettyCashSurrenderHeader.SetRange(PettyCashSurrenderHeader."No.", surrenderNo);
 
-    //     if PettyCashSurrenderHeader.Find('-') then begin
-    //         // Update only fields that need to be changed
-    //         PettyCashSurrenderHeader."Advance No." := pettyCashNo;
-    //         PettyCashSurrenderHeader."Responsibility Center" := resCenter;
-
-    //         // Ensure Account No. and Account Name are not overwritten unless necessary
-    //         if PettyCashSurrenderHeader."Account No." = '' then
-    //             PettyCashSurrenderHeader."Account No." := PettyCashHeader."Account No.";
-    //         if PettyCashSurrenderHeader."Account Name" = '' then
-    //             PettyCashSurrenderHeader."Account Name" := PettyCashHeader.payee;
-
-    //         // Update other fields only if they are meant to be changed
-    //         PettyCashSurrenderHeader.Payee := PettyCashHeader.payee;
-    //         PettyCashSurrenderHeader."Account Type" := PettyCashSurrenderHeader."Account Type"::Customer;
-    //         PettyCashSurrenderHeader.Cashier := PettyCashHeader.Cashier;
-    //         PettyCashSurrenderHeader."Global Dimension 1 Code" := PettyCashHeader."Global Dimension 1 Code";
-    //         PettyCashSurrenderHeader."Global Dimension 2 Code" := PettyCashHeader."Global Dimension 2 Code";
-
-    //         // Validate if necessary
-    //         PettyCashSurrenderHeader.Validate("Global Dimension 1 Code");
-    //         PettyCashSurrenderHeader.Validate("Global Dimension 2 Code");
-
-    //         if PettyCashSurrenderHeader.Modify() then begin
-    //             Message := 'SUCCESS' + '::' + PettyCashSurrenderHeader."No.";
-    //         end else begin
-    //             Message := 'FAILED' + '::';
-    //         end;
-    //     end else begin
-    //         Message := 'FAILED: Record not found for Surrender No. ' + surrenderNo;
-    //     end;
-    // end;
-
+    procedure UpdatePettyCashHeader(pettyCashNo: Text)
+    begin
+        PettyCashHeader.Reset();
+        PettyCashHeader.SetRange("No.", pettyCashNo);
+        if PettyCashHeader.Find('-') then begin
+            PettyCashHeader."Surrender Status" := PettyCashHeader."Surrender Status"::Full;
+            PettyCashHeader.Modify();
+        end;
+    end;
 
     procedure InsertPettyCashSurrenderLines(documentNo: Text; pettyCashNo: Text; amountSpent: Decimal; cashReturned: Decimal; accountNo: Text)
     begin
@@ -1893,7 +1954,7 @@ codeunit 52178889 Staffportal
         end;
     end;
 
-    procedure UpdatePettyCashSurrenderLines(documentNo: Text; pettyCashNo: Text; amountSpent: Decimal; cashReturned: Decimal; accountNo: Text)
+    procedure UpdatePettyCashSurrenderLines1(documentNo: Text; pettyCashNo: Text; amountSpent: Decimal; cashReturned: Decimal; accountNo: Text)
     begin
         PettyCashSurrenderLines.Reset();
         PettyCashSurrenderLines.SetRange(PettyCashSurrenderLines."Surrender No.", documentNo);
@@ -2252,6 +2313,129 @@ codeunit 52178889 Staffportal
         end;
     end;
 
+    procedure UploadDocument(retNo: Code[50]; FileName: Text; attachment: BigText; tableId: Integer)
+    var
+        FromRecRef: RecordRef;
+        FileManagement: Codeunit "File Management";
+        Bytes: dotnet BCArray;
+        Convert: dotnet BCConvert;
+        MemoryStream: dotnet BCMemoryStream;
+        Ostream: OutStream;
+        tableFound: Boolean;
+        ImprestSurrenderHeader: Record "FIN-Imprest Surr. Header";
+        ClaimRequisition: Record "FIN-Staff Claims Header";
+        ImprestRequisition: Record "FIN-Imprest Header";
+        PettyCashHeader: Record "Advance PettyCash Header";
+        PettyCashSurrender: Record "PettyCash Surrender Header";
+        MemoHeader: Record "FIN-Memo Header";
+        DocAttachment: Record "Document Attachment";
+    // ReimbursmentHeader: Record "Reimbursement Header";
+    begin
+
+        tableFound := false;
+        if TableID = Database::"FIN-Imprest Surr. Header" then begin
+            ImprestSurrenderHeader.RESET;
+            if ImprestSurrenderHeader.FIND('-') then begin
+                FromRecRef.GETTABLE(ImprestSurrenderHeader);
+            end;
+            tableFound := true;
+        end;
+
+        if TableId = Database::"FIN-Staff Claims Header" then begin
+            ClaimRequisition.Reset();
+            if ClaimRequisition.Find('-') then begin
+                FromRecRef.GetTable(ClaimRequisition);
+            end;
+            tableFound := true;
+        end;
+
+        if TableId = Database::"FIN-Imprest Header" then begin
+            ImprestRequisition.Reset();
+            if ImprestRequisition.Find('-') then begin
+                FromRecRef.GetTable(ImprestRequisition);
+            end;
+            tableFound := true;
+        end;
+
+        if tableId = Database::"Advance PettyCash Header" then begin
+            PettyCashHeader.Reset();
+            if PettyCashHeader.Find('-') then begin
+                FromRecRef.GetTable(PettyCashHeader);
+            end;
+            tableFound := true;
+        end;
+
+        if tableId = Database::"Advance PettyCash Header" then begin
+            PettyCashHeader.Reset();
+            if PettyCashHeader.Find('-') then begin
+                FromRecRef.GetTable(PettyCashHeader);
+            end;
+            tableFound := true;
+        end;
+
+        if tableId = Database::"PettyCash Surrender Header" then begin
+            PettyCashSurrender.Reset();
+            if PettyCashSurrender.Find('-') then begin
+                FromRecRef.GetTable(PettyCashSurrender);
+            end;
+            tableFound := true;
+        end;
+
+        if tableId = Database::"FIN-Memo Header" then begin
+            MemoHeader.Reset();
+            if MemoHeader.Find('-') then begin
+                FromRecRef.GetTable(MemoHeader);
+            end;
+            tableFound := true;
+        end;
+
+        // if tableId = Database::"Reimbursement Header" then begin
+        //     ReimbursmentHeader.Reset();
+        //     if ReimbursmentHeader.Find('-') then begin
+        //         FromRecRef.GetTable(ReimbursmentHeader);
+        //     end;
+        //     tableFound := true;
+        // end;
+
+        if tableFound = true then begin
+            if FileName <> '' then begin
+                Clear(DocAttachment);
+                DocAttachment.Init();
+                DocAttachment."File Extension" := FileManagement.GetExtension(FileName);
+                DocAttachment."File Name" := CopyStr(FileManagement.GetFileNameWithoutExtension(FileName), 1, MaxStrLen(FileName));
+                DocAttachment.Validate("File Extension", FileManagement.GetExtension(FileName));
+                DocAttachment.Validate("File Name", CopyStr(FileManagement.GetFileNameWithoutExtension(FileName), 1, MaxStrLen(FileName)));
+                DocAttachment."Table ID" := FromRecRef.Number;
+                DocAttachment."No." := retNo;
+                DocAttachment.Validate("Table ID", FromRecRef.Number);
+                DocAttachment.Validate("No.", retNo);
+                Bytes := Convert.FromBase64String(Attachment);
+                MemoryStream := MemoryStream.MemoryStream(Bytes);
+                DocAttachment."Document Reference ID".ImportStream(MemoryStream, '', FileName);
+                DocAttachment.Insert();
+            end;
+        end;
+    end;
+
+    procedure RemoveAttachment(systemId: Text)
+    begin
+        DocumentAttachment.Reset();
+        DocumentAttachment.SetRange(SystemId, systemId);
+        if DocumentAttachment.Find('-') then DocumentAttachment.Delete();
+    end;
+
+
+    procedure GetMyAttachments(documentNo: Text) Message: Text
+    begin
+        DocumentAttachment.Reset();
+        DocumentAttachment.SetRange("No.", documentNo);
+        if DocumentAttachment.Find('-') then begin
+            repeat
+                Message += DocumentAttachment."No." + '::' + DocumentAttachment."File Name" + '::' + DocumentAttachment."File Extension" + '::' + Format(DocumentAttachment.SystemCreatedAt) + '::' + DocumentAttachment.SystemId + '[]';
+            until DocumentAttachment.Next() = 0;
+        end;
+    end;
+
     procedure GetAttachmentDetails(systemId: Text) Message: Text
     var
         Attachments: Record GeneralDocumentAttachment;
@@ -2260,6 +2444,141 @@ codeunit 52178889 Staffportal
         Attachments.SetRange(Attachments.SystemId, systemId);
         if Attachments.Find('-') then begin
             Message := Attachments."Document No" + '::' + Attachments.Description;
+        end;
+    end;
+
+    procedure GetPostedImprests(username: Text) Message: Text
+    begin
+        ImprestHeader.Reset();
+        ImprestHeader.SetRange("Account No.", username);
+        ImprestHeader.SetRange("Surrender Status", ImprestHeader."Surrender Status"::" ");
+        ImprestHeader.SetRange(Status, ImprestHeader.Status::Posted);
+        if ImprestHeader.Find('-') then begin
+            repeat
+                Message += ImprestHeader."No." + '::' + Format(ImprestHeader.Date) + '::' + ImprestHeader.Payee + '::' + Format(GetTotalImprestAmount(ImprestHeader."No.")) + '::' + Format(ImprestHeader.Status) + '[]';
+            until ImprestHeader.Next() = 0;
+        end;
+    end;
+
+    procedure GetTotalImprestAmount(documentNo: Text) Message: Decimal
+    begin
+        ImprestLines.Reset();
+        ImprestLines.SetRange(No, documentNo);
+        if ImprestLines.Find('-') then begin
+            repeat
+                Message := Message + ImprestLines.Amount;
+            until ImprestLines.Next() = 0;
+        end;
+    end;
+
+    procedure GetMyImprestSurrenders(username: Text) Message: Text
+    begin
+        ImprestSurrenderHeader.Reset();
+        ImprestSurrenderHeader.SetRange("Account No.", username);
+        if ImprestSurrenderHeader.Find('-') then begin
+            repeat
+                Message += ImprestSurrenderHeader.No + '::' + Format(ImprestSurrenderHeader."Surrender Date") + '::' + ImprestSurrenderHeader.Payee + '::' + Format(GetTotalImprestSurrenderAmount(ImprestSurrenderHeader.No)) + '::' + Format(ImprestSurrenderHeader.Status) + '::' + ImprestSurrenderHeader."Imprest Issue Doc. No" + '[]';
+            until ImprestSurrenderHeader.Next() = 0;
+        end;
+    end;
+
+    procedure GetTotalImprestSurrenderAmount(surrenderNo: Text) Message: Decimal
+    begin
+        ImprestSurrenderLines.Reset();
+        ImprestSurrenderLines.SetRange("Surrender Doc No.", surrenderNo);
+        if ImprestSurrenderLines.Find('-') then begin
+            repeat
+                Message := Message + ImprestSurrenderLines.Amount;
+            until ImprestSurrenderLines.Next() = 0;
+        end;
+    end;
+
+    procedure GetPettyCashSurrenderDetails(surrenderNo: Text; accountNo: Text) Message: Text
+    begin
+        PettyCashSurrenderLines.Reset();
+        PettyCashSurrenderLines.SetRange("Surrender No.", surrenderNo);
+        PettyCashSurrenderLines.SetRange("Account No.", accountNo);
+        if PettyCashSurrenderLines.Find('-') then begin
+            Message += Format(PettyCashSurrenderLines."Actual Spent") + '::' + Format(PettyCashSurrenderLines."Cash Receipt Amount") + '::' + PettyCashSurrenderLines."Cash Receipt No";
+        end;
+    end;
+
+    procedure UpdateImprestHeader(imprestNo: Text; resCenter: Text; amount: Decimal)
+    begin
+        ImprestHeader.Reset();
+        ImprestHeader.SetRange("No.", imprestNo);
+        if ImprestHeader.Find('-') then begin
+            ImprestHeader."Responsibility Center" := resCenter;
+            ImprestHeader."Total Net Amount" := amount;
+            ImprestHeader."Total Net Amount LCY" := amount;
+
+            ImprestHeader.Modify();
+
+            if ApprovalMngnt.IsImprestEnabled(ImprestHeader) = false then Error('No approval workflow enabled');
+            // BudgetCommitment.CommitImprestBudget(imprestNo);
+            ApprovalMngnt.OnSendImprestforApproval(ImprestHeader);
+        end;
+    end;
+
+    procedure OnSendImprestRequisitionForApproval(imprestNo: Text) Message: Text
+    begin
+        ImprestHeader.Reset();
+        ImprestHeader.SetRange(ImprestHeader."No.", imprestNo);
+        if ImprestHeader.Find('-') then begin
+            if ApprovalMngnt.IsImprestEnabled(ImprestHeader) = true then begin
+                ApprovalMngnt.OnSendImprestforApproval(ImprestHeader);
+                Message := 'SUCCESS';
+            end else begin
+                Message := 'No approval workflow enabled';
+            end;
+        end;
+    end;
+
+    procedure GetImprestSurrenderResponsibilityCenter(surrenderNo: Text) Message: Text
+    begin
+        ImprestSurrenderHeader.Reset();
+        ImprestSurrenderHeader.SetRange(No, surrenderNo);
+        if ImprestSurrenderHeader.Find('-') then Message := ImprestSurrenderHeader."Responsibility Center";
+    end;
+
+    procedure GetStaffPettyCashNo(username: Text) Message: Text
+    var
+        UserSetup: Record "User Setup";
+    begin
+        UserSetup.Reset();
+        UserSetup.SetRange("Employee No.", username);
+        if UserSetup.Find('-') then Message := UserSetup."Staff PettyC No";
+    end;
+
+    procedure HasPendingPettyCash(accountNo: Text) Message: Boolean
+    begin
+        PettyCashHeader.Reset();
+        PettyCashHeader.SetRange("Account No.", accountNo);
+        if PettyCashHeader.Find('-') then begin
+            if PettyCashHeader."Surrender Status" = PettyCashHeader."Surrender Status"::" " then Message := true;
+        end;
+    end;
+
+    procedure UpdatePettyCashSurrenderHeader(surrenderNo: Text; resCenter: Text)
+    begin
+        PettyCashSurrenderHeader.Reset();
+        PettyCashSurrenderHeader.SetRange("No.", surrenderNo);
+        if PettyCashSurrenderHeader.Find('-') then begin
+            PettyCashSurrenderHeader."Responsibility Center" := resCenter;
+            PettyCashSurrenderHeader.Modify();
+        end;
+    end;
+
+    procedure UpdatePettyCashSurrenderLines(pettyCashNo: Text; accountNo: Text; actualSpent: Decimal; cashReturned: Decimal; receiptNo: Text)
+    begin
+        PettyCashSurrenderLines.Reset();
+        PettyCashSurrenderLines.SetRange("Surrender No.", pettyCashNo);
+        PettyCashSurrenderLines.SetRange("Account No.", accountNo);
+        if PettyCashSurrenderLines.Find('-') then begin
+            PettyCashSurrenderLines."Actual Spent" := actualSpent;
+            PettyCashSurrenderLines."Cash Receipt Amount" := cashReturned;
+            PettyCashSurrenderLines."Cash Receipt No" := receiptNo;
+            PettyCashSurrenderLines.Modify();
         end;
     end;
 }
